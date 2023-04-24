@@ -10,6 +10,7 @@
 - Giao diện thuần tuý CLI, thuần tuý Linux Bash script, tự động hoá hoàn toàn mọi tác vụ, trình độ tương đương LPI-level 2. Dự án này chỉ dùng 2 máy aỏ, nhưng nếu có rất nhiêù máy hơn nưã thì tôi cũng có thể tự động hoá được, tự lập trình mà không dùng đến Ansible. Ví dụ ta thấy các file tên layer1-2-3.sh, đây là các file ban đầu dựng lên server, các file này không phải được viết chay, mà chúng được tự động render lên, nhờ áp dụng tư duy MVT cuả Frontend Engineer.
 - Giám sát Metric bằng stack InfluxDB - Telegraf. Giám sát Log bằng stack Kibana - Elasticsearch - Logstash - Beat, ở đây do giới hạn tài nguyên nên không trình bày Giám sát Log.
 - Bảo mật cơ bản: dùng Nginx bọc ngoài cho tất cả service, chứng chỉ SSL tự gia hạn, SHA3 bảo mật cho API.
+- Thơì gian xây dựng dự án: 8 tiếng.
 
 # Tài nguyên
 - 2 máy ảo, nhà cung cấp Việt Nam. Cấu hình mỗi maý: 1 vCore, 2 GB RAM, 12 GB SSD.
