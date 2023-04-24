@@ -1,0 +1,14 @@
+[Unit]
+Description = API Service
+After=network.target
+
+[Service]
+User = root
+Group = root
+Type = simple
+WorkingDirectory=/code/backend
+Environment="PATH=/code/backend/venv/bin"
+ExecStart = /code/backend/venv/bin/python3 /code/backend/main.py
+
+[Install]
+WantedBy = multi-user.target
