@@ -14,8 +14,8 @@
 # Tài nguyên
 - 2 máy ảo, nhà cung cấp Việt Nam. Cấu hình mỗi maý: 1 vCore, 2 GB RAM, 12 GB SSD.
 - 2 tên miền:
-  + Server vai trò CI: quang.vip
-  + Sevrer vai trò CD: quang.pro
+  + Server CI: quang.vip. File SSH private: secret/quang.vip.pri, user root
+  + Sevrer CD: quang.pro. File SSH private: secret/quang.pro.pri, user root
 - 3 kho chưá code:
   + Kho code dựng server: https://github.com/quangdaicaa/basevn
   + Kho source code: https://github.com/quangdaicaa/basevn_html
@@ -23,8 +23,27 @@
 - Điạ chỉ:
   + CV cá nhân: https://quang.pro
   + View sản phẩm: https://quang.pro:777
-  + Server metric: http://quang.pro:888
+  + Server metric: http://quang.pro:888. Username/Password: quangpro/wuKddVM3TGh7AHf
   + API cuả server CI: https://quang.pro:666/docs
   + API cuả server CD: https://quang.vip:666/docs
   + Webhook nối Github vơí CI: https://quang.vip:666/hook
   + Webhook nối CI với CD: https://quang.pro:666/deploy
+
+# Mô hình
+- Bước 1: Người dùng commit source code (HTML thuần) lên https://github.com/quangdaicaa/basevn_html
+- Bước 2: Github gửi webhook đến server CI https://quang.vip:666/hook
+- Bước 3: Server quang.vip tải source code về
+- Bước 4: Server quang.vip build source code thành binary code (tạm bỏ qua)
+- Bước 5: Server quang.vip đóng gói binary code vào container Alpine
+- Bước 6: Server quang.vip đâỷ container Alpine lên https://hub.docker.com/r/quangdaicaa/html
+- Bước 7: Server quang.vip phát tín hiệu webhook đến server CD https://quang.pro:666/deploy
+- Bước 8: Server quang.pro tải container Alpine về 
+- Bước 9: Server quang.pro cho container chaỵ ngầm, ánh xạ cổng, ánh xạ ổ điã SSL
+- Bước 10: Server quang.pro trình bày sản phẩm lên view https://quang.pro:777 thông qua Nginx
+- Ngoài ra: Server quang.pro và quang.vip định kỳ gửi metric theo dõi hệ thống và tình trạng container về Database http://quang.pro:888
+
+# Cây thư mục
+- Thư mục quang.pro: chưá code dựng server quang.pro
+- Thư mục quang.vip: chưá code dựng server quang.vip
+- Các file layer.sh: file khởi tạo server ban đâù từ khi mơí cài hệ điêù hành
+- Thư mục secret: chưá các mã SSH, mã access API, mã login Docker Hub, Token Database
